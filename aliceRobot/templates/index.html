@@ -1,10 +1,10 @@
- {% extends "base.html" %} {% block title %} Sensory {% endblock %}
-{%block content%}
+{% extends "base.html" %} {% block title %} Home {% endblock %}{%block content%}
 <h1> Sensory  </h1> 
 <br>
 <form  action="/" method="post">
+<input type="submit" name="submit" value="setup">
 <table style="width:100%">
-  <caption>Basic Sensors</caption>
+  <caption>Driving</caption>
   <tr>
     <th>Left</th>
     <th>Right</th>
@@ -23,16 +23,16 @@
   </tr>
 </table >
 <table style="width:100%">
-  <caption>Accelerometer</caption>
+  <caption>Sensors</caption>
   <tr>
     <th>Light</th>
     <th>Range</th>
     <th>Ultrasonic</th>
   </tr>
   <tr>
-    <td>{{ values['light']['value'] }}</td>
-    <td>{{ values['range']['value'] }}</td>
-    <td>{{ values['ultrasonic']['value'] }}</td>
+    <td>{{ values['light'] }}</td>
+    <td>{{ values['range'] }}</td>
+    <td>{{ values['ultrasonic'] }}</td>
   </tr>
 </table>
 {% endblock %}

@@ -1,0 +1,59 @@
+from flask import Blueprint, render_template, request
+from pymata4 import pymata4
+import time
+
+robot = Blueprint('robot', __name__)
+board = None
+robot_pins = {
+    'servo_left': 8,
+    'servo_right': 9,
+    'ultrasonic': 0,
+    'range': 0,
+    'light': 1,
+    'relay': 22
+}
+    
+@robot.route('/', methods = ['POST','GET'])
+def home():
+    robot_data = {
+        'servo_left': 87,
+        'servo_right': 89,
+        'ultrasonic': 0,
+        'range': 0,
+        'light': 0,
+        'relay': 0
+    }
+    
+    if request.method == 'POST':
+        if request.form['submit'] == 'setup': 
+            global board
+            board = pymata4.Pymata4()
+            time.sleep(3)
+
+            board.set_pin_mode_servo(robot_pins['servo_left'])
+            board.servo_write(robot_pins['servo_left'], 87)
+            board.set_pin_mode_servo(robot_pins['servo_right'])
+            board.servo_write(robot_pins['servo_right'], 89)
+            board.set_pin_mode_analog_input(robot_pins['range'])
+            board.set_pin_mode_analog_input(robot_pins['light'])
+            board.set_pin_mode_digital_output(robot_pins['relay'])
+            
+        if request.form['submit'] == 'leftForwards': 
+            robot_data['servo_left'] = 177
+        elif request.form['submit'] == 'leftStop': 
+            robot_data['servo_left'] = 87
+        elif request.form['submit'] == 'leftBackwards': 
+            robot_data['servo_left'] = 0
+            
+        if request.form['submit'] == 'rightForwards': 
+            robot_data['servo_right'] = 179
+        elif request.form['submit'] == 'rightStop': 
+            robot_data['servo_right'] = 89
+        elif request.form['submit'] == 'rightBackwards': 
+            robot_data['servo_right'] = 0
+        
+        board.servo_write(robot_pins['servo_left'], robot_data['servo_left'] )
+        board.servo_write(robot_pins['servo_right'], robot_data['servo_right'] )
+        board.digital_write(robot_pins['relay'], robot_data['relay'])
+        
+    return render_template('index.html', values = robot_data )
