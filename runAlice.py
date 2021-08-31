@@ -1,4 +1,4 @@
 import git
-repo = git.Repo('gitAlice')
+repo = git.Repo('aliceRobot')
 repo.remotes.origin.pull()
-exec(open("gitAlice/main.py").read())
+exec(open("aliceRobot/main.py").read())
