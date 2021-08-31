@@ -12,10 +12,7 @@ robot_pins = {
     'light': 1,
     'relay': 22
 }
-    
-@robot.route('/', methods = ['POST','GET'])
-def home():
-    robot_data = {
+robot_data = {
         'servo_left': 87,
         'servo_right': 89,
         'ultrasonic': 0,
@@ -23,6 +20,9 @@ def home():
         'light': 0,
         'relay': 0
     }
+    
+@robot.route('/', methods = ['POST','GET'])
+def home():
     
     if request.method == 'POST':
         if request.form['submit'] == 'setup': 
