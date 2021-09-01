@@ -41,8 +41,6 @@ def home():
             except:
                 flash('Already Set up', category='error')
         
-        if board == None:
-            flash('Board needs to be initiated', category='error')
         elif request.form['submit'] == 'leftForwards' and board != None: 
             robot_data['servo_left'] = 177
         elif request.form['submit'] == 'leftStop' and board != None:
@@ -50,8 +48,6 @@ def home():
         elif request.form['submit'] == 'leftBackwards' and board != None:
             robot_data['servo_left'] = 0
             
-        if board == None:
-            flash('Board needs to be initiated', category='error')
         elif request.form['submit'] == 'rightForwards' and board != None: 
             robot_data['servo_right'] = 0
         elif request.form['submit'] == 'rightStop' and board != None: 
