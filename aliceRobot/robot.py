@@ -24,6 +24,7 @@ robot_data = {
 @robot.route('/', methods = ['POST','GET'])
 def home():
     global board
+    print(board)
     if request.method == 'POST':
         if request.form['submit'] == 'setup': 
             try: 
