@@ -25,6 +25,7 @@ robot_data = {
 def home():
     
     if request.method == 'POST':
+        print(board)
         if request.form['submit'] == 'setup': 
             try: 
                 global board
