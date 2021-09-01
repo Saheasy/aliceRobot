@@ -46,11 +46,11 @@ def home():
             robot_data['servo_left'] = 0
             
         if request.form['submit'] == 'rightForwards': 
-            robot_data['servo_right'] = 179
+            robot_data['servo_right'] = 0
         elif request.form['submit'] == 'rightStop': 
             robot_data['servo_right'] = 89
         elif request.form['submit'] == 'rightBackwards': 
-            robot_data['servo_right'] = 0
+            robot_data['servo_right'] = 179
         
         board.servo_write(robot_pins['servo_left'], robot_data['servo_left'] )
         board.servo_write(robot_pins['servo_right'], robot_data['servo_right'] )
