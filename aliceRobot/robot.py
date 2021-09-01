@@ -43,7 +43,7 @@ def home():
             
         if request.form['submit'] == 'leftForwards' and board != None: 
             robot_data['servo_left'] = 177
-        elif request.form['submit'] == 'leftStop' and board != None:: 
+        elif request.form['submit'] == 'leftStop' and board != None:
             robot_data['servo_left'] = 87
         elif request.form['submit'] == 'leftBackwards' and board != None:: 
             robot_data['servo_left'] = 0
