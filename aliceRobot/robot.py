@@ -55,11 +55,14 @@ def home():
         elif request.form['submit'] == 'rightBackwards': 
             robot_data['servo_right'] = 179
         
+        elif request.form['submit'] == 'updateSensory':
+            pass
+        
         board.servo_write(robot_pins['servo_left'], robot_data['servo_left'] )
         board.servo_write(robot_pins['servo_right'], robot_data['servo_right'] )
         board.digital_write(robot_pins['relay'], robot_data['relay'])
-        robot_data['range'] = board.analog_read(robot_pins['range'])
-        robot_data['light'] = board.analog_read(robot_pins['light'])
+        robot_data['range'] = board.analog_read(robot_pins['range'][0])
+        robot_data['light'] = board.analog_read(robot_pins['light'][0])
     return render_template('index.html', values = robot_data )
     
     
