@@ -41,28 +41,32 @@ def home():
             except:
                 flash('Already Set up', category='error')
         
-        elif request.form['submit'] == 'leftForwards' and board != None: 
+        elif request.form['submit'] == 'leftForwards': 
             robot_data['servo_left'] = 177
-        elif request.form['submit'] == 'leftStop' and board != None:
+        elif request.form['submit'] == 'leftStop':
             robot_data['servo_left'] = 87
-        elif request.form['submit'] == 'leftBackwards' and board != None:
+        elif request.form['submit'] == 'leftBackwards':
             robot_data['servo_left'] = 0
             
-        elif request.form['submit'] == 'rightForwards' and board != None: 
+        elif request.form['submit'] == 'rightForwards': 
             robot_data['servo_right'] = 0
-        elif request.form['submit'] == 'rightStop' and board != None: 
+        elif request.form['submit'] == 'rightStop': 
             robot_data['servo_right'] = 89
-        elif request.form['submit'] == 'rightBackwards' and board != None: 
+        elif request.form['submit'] == 'rightBackwards': 
             robot_data['servo_right'] = 179
             
         if request.form['submit'] == 'updateSensory':
             pass
         
-        board.servo_write(robot_pins['servo_left'], robot_data['servo_left'] )
-        board.servo_write(robot_pins['servo_right'], robot_data['servo_right'] )
-        board.digital_write(robot_pins['relay'], robot_data['relay'])
-        robot_data['range'] = board.analog_read(robot_pins['range'])[0]
-        robot_data['light'] = board.analog_read(robot_pins['light'])[0]
+        if board != None:
+            board.servo_write(robot_pins['servo_left'], robot_data['servo_left'] )
+            board.servo_write(robot_pins['servo_right'], robot_data['servo_right'] )
+            board.digital_write(robot_pins['relay'], robot_data['relay'])
+            robot_data['range'] = board.analog_read(robot_pins['range'])[0]
+            robot_data['light'] = board.analog_read(robot_pins['light'])[0]
+        else:
+            flash('Board not initiated', category='error')
+    
     return render_template('index.html', values = robot_data )
     
     
