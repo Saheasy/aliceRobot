@@ -45,7 +45,7 @@ def home():
             robot_data['servo_left'] = 177
         elif request.form['submit'] == 'leftStop' and board != None:
             robot_data['servo_left'] = 87
-        elif request.form['submit'] == 'leftBackwards' and board != None:: 
+        elif request.form['submit'] == 'leftBackwards' and board != None:
             robot_data['servo_left'] = 0
         else:
             flash('Board needs to be initiated', category='error')
