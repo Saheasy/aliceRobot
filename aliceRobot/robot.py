@@ -39,23 +39,27 @@ def home():
                 board.set_pin_mode_analog_input(robot_pins['light'])
                 board.set_pin_mode_digital_output(robot_pins['relay'])
             except:
-                flash('Already Set up', category = 'error')
+                flash('Already Set up', category='error')
             
-        if request.form['submit'] == 'leftForwards': 
+        if request.form['submit'] == 'leftForwards' and board != None: 
             robot_data['servo_left'] = 177
-        elif request.form['submit'] == 'leftStop': 
+        elif request.form['submit'] == 'leftStop' and board != None:: 
             robot_data['servo_left'] = 87
-        elif request.form['submit'] == 'leftBackwards': 
+        elif request.form['submit'] == 'leftBackwards' and board != None:: 
             robot_data['servo_left'] = 0
+        else:
+            flash('Board needs to be initiated', category='error')
             
-        if request.form['submit'] == 'rightForwards': 
+        if request.form['submit'] == 'rightForwards' and board != None: 
             robot_data['servo_right'] = 0
-        elif request.form['submit'] == 'rightStop': 
+        elif request.form['submit'] == 'rightStop' and board != None: 
             robot_data['servo_right'] = 89
-        elif request.form['submit'] == 'rightBackwards': 
+        elif request.form['submit'] == 'rightBackwards' and board != None: 
             robot_data['servo_right'] = 179
-        
-        elif request.form['submit'] == 'updateSensory':
+        else:
+            flash('Board needs to be initiated', category='error')
+            
+        if request.form['submit'] == 'updateSensory':
             pass
         
         board.servo_write(robot_pins['servo_left'], robot_data['servo_left'] )
