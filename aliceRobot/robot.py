@@ -23,12 +23,10 @@ robot_data = {
     
 @robot.route('/', methods = ['POST','GET'])
 def home():
-    
+    global board
     if request.method == 'POST':
-        print(board)
         if request.form['submit'] == 'setup': 
             try: 
-                global board
                 board = pymata4.Pymata4()
                 time.sleep(3)
 
