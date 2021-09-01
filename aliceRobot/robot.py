@@ -7,7 +7,7 @@ board = None
 robot_pins = {
     'servo_left': 8,
     'servo_right': 9,
-    'ultrasonic': 0,
+    'ultrasonic': 
     'range': 0,
     'light': 1,
     'relay': 22
@@ -15,7 +15,7 @@ robot_pins = {
 robot_data = {
         'servo_left': 87,
         'servo_right': 89,
-        'ultrasonic': 0,
+        'ultrasonic': 7,6
         'range': 0,
         'light': 0,
         'relay': 0
@@ -37,6 +37,8 @@ def home():
                 board.set_pin_mode_analog_input(robot_pins['range'])
                 board.set_pin_mode_analog_input(robot_pins['light'])
                 board.set_pin_mode_digital_output(robot_pins['relay'])
+                board.set_pin_mode_sonar(robot_pins['ultrasonic'][0], robot_pins['ultrasonic'][1])
+                
             except:
                 flash('Already Set up', category='error')
         
@@ -68,6 +70,7 @@ def home():
             board.digital_write(robot_pins['relay'], robot_data['relay'])
             robot_data['range'] = board.analog_read(robot_pins['range'])[0]
             robot_data['light'] = board.analog_read(robot_pins['light'])[0]
+            robot_data['ultrasonic'] = board.sonar_read(robot_pins['ultrasonic'][0])[0]
         else:
             flash('Board not initiated', category='error')
     
