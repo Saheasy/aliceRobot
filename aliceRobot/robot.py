@@ -41,20 +41,25 @@ def home():
             except:
                 flash('Already Set up', category='error')
         
-        elif request.form['submit'] == 'leftForwards': 
+        if request.form['submit'] == 'leftForwards': 
             robot_data['servo_left'] = 177
         elif request.form['submit'] == 'leftStop':
             robot_data['servo_left'] = 87
         elif request.form['submit'] == 'leftBackwards':
             robot_data['servo_left'] = 0
             
-        elif request.form['submit'] == 'rightForwards': 
+        if request.form['submit'] == 'rightForwards': 
             robot_data['servo_right'] = 0
         elif request.form['submit'] == 'rightStop': 
             robot_data['servo_right'] = 89
         elif request.form['submit'] == 'rightBackwards': 
             robot_data['servo_right'] = 179
-            
+        
+        if request.form['submit'] == 'onRelay': 
+            robot_data['relay'] = 1
+        elif request.form['submit'] == 'offRelay': 
+            robot_data['relay'] = 0
+        
         if request.form['submit'] == 'updateSensory':
             pass
         
