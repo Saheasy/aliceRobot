@@ -15,7 +15,7 @@ robot_pins = {
 robot_data = {
         'servo_left': 87,
         'servo_right': 89,
-        'ultrasonic': 7,6
+        'ultrasonic': [7,6]
         'range': 0,
         'light': 0,
         'relay': 0
